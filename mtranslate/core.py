@@ -24,7 +24,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+import random
 import sys
 import re
 
@@ -67,7 +67,21 @@ def translate(to_translate, to_language="auto", from_language="auto"):
     print(translate("salut tu vas bien?", "en"))
     hello you alright?
     """
+    ip_addresses = [
+        "190.248.153.162:8080",
+        "177.42.79.74:8080",
+        "47.88.16.118:3128",
+        "80.240.21.230:8080",
+        "5.189.152.125:8118",
+        "212.227.193.229:3128",
+        "167.233.7.67:3128",
+    ]
     base_link = "http://translate.google.com/m?hl=%s&sl=%s&q=%s"
+    proxy_index = random.randint(0, len(ip_addresses) - 1)
+    proxy = {"http": ip_addresses[proxy_index]}
+    proxy = urllib2.ProxyHandler(proxy)
+    opener = urllib2.build_opener(proxy)
+    urllib2.install_opener(opener)
     if (sys.version_info[0] < 3):
         to_translate = urllib.quote_plus(to_translate)
         link = base_link % (to_language, from_language, to_translate)
