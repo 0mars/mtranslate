@@ -90,7 +90,18 @@ def translate(to_translate, to_language="auto", from_language="auto"):
     else:
         to_translate = urllib.parse.quote(to_translate)
         link = base_link % (to_language, from_language, to_translate)
-        raw_data = urllib.urlopen(link, proxies=proxy).read()
+        proxy = urllib.ProxyHandler(proxy)
+        opener = urllib.build_opener(proxy)
+        urllib2.install_opener(opener)
+        request = urllib.request.Request(link, headers=agent)
+
+        proxy_support = urllib.request.ProxyHandler(proxy)
+        opener = urllib.request.build_opener(proxy_support)
+        urllib.request.install_opener(opener)
+
+        with urllib.request.urlopen(request) as response:
+            raw_data = response.read()
+
     data = raw_data.decode("utf-8")
     expr = r'class="t0">(.*?)<'
     re_result = re.findall(expr, data)
