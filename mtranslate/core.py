@@ -27,6 +27,7 @@ SOFTWARE.
 import random
 import sys
 import re
+import logging
 
 if (sys.version_info[0] < 3):
     import urllib2
@@ -75,6 +76,9 @@ def translate(to_translate, to_language="auto", from_language="auto"):
         "5.189.152.125:8118",
         "212.227.193.229:3128",
         "167.233.7.67:3128",
+        "159.69.62.137:8080",
+        "217.114.218.247:80",
+        "138.201.5.34:8080"
     ]
     base_link = "http://translate.google.com/m?hl=%s&sl=%s&q=%s"
     proxy_index = random.randint(0, len(ip_addresses) - 1)
@@ -95,7 +99,7 @@ def translate(to_translate, to_language="auto", from_language="auto"):
         proxy_support = urllib.request.ProxyHandler(proxy)
         opener = urllib.request.build_opener(proxy_support)
         urllib.request.install_opener(opener)
-
+        logging.getLogger(__name__).info(proxy)
         with urllib.request.urlopen(request) as response:
             raw_data = response.read()
 
