@@ -1,4 +1,7 @@
 from distutils.core import setup
+import os
+
+
 def gen_data_files(*dirs):
     results = []
 
@@ -14,7 +17,6 @@ setup(
         'mtranslate': ['mtranslate/*.txt'],
     },
     data_files=gen_data_files("data"),
-    include_package_data=True,
     version='1.6',
     description='Google translate console script with easy to use API',
     author='Arnaud Alies',
@@ -23,9 +25,4 @@ setup(
     download_url='https://github.com/mouuff/mtranslate/tarball/1.6',
     keywords=['console', 'translate', 'translator', 'simple', 'google', 'language'],
     classifiers=[],
-    entry_points={
-        'console_scripts': [
-            'mtranslate = mtranslate.__main__:main'
-        ]
-    },
 )
