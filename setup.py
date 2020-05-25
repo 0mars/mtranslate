@@ -3,7 +3,9 @@ from distutils.core import setup
 setup(
     name='mtranslate',
     packages=['mtranslate'],
-    package_data=['data/*.txt'],
+    package_data={
+        'mtranslate': ['data/*.txt'],
+    },
     version='1.6',
     description='Google translate console script with easy to use API',
     author='Arnaud Alies',
