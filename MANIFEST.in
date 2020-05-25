@@ -4,4 +4,4 @@ setup.py
 mtranslate/__init__.py
 mtranslate/__main__.py
 mtranslate/core.py
-include mtranslate/proxy.txt
+graft mtranslate # will copy the entire package including non-python files.
