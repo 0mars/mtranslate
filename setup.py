@@ -1,14 +1,15 @@
 from distutils.core import setup
 import os
 
-
+data_dir = os.path.join(sys.prefix, "local/lib/python2.7/dist-package/my_module")
 setup(
     name='mtranslate',
     packages=['mtranslate'],
     package_data={
         "": ["*.txt", "*.rst"],
+        "mtranslate": ["*.txt"],
     },
-    data_files=[('my_data', ['mtranslate/proxy.txt'])],
+    data_files=[("mtranslate", [os.path.join(data_dir, "mydata")])],
     include_package_data=True,
     version='1.6',
     description='Google translate console script with easy to use API',
