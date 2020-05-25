@@ -1,4 +1,11 @@
 from distutils.core import setup
+def gen_data_files(*dirs):
+    results = []
+
+    for src_dir in dirs:
+        for root,dirs,files in os.walk(src_dir):
+            results.append((root, map(lambda f:root + "/" + f, files)))
+    return results
 
 setup(
     name='mtranslate',
@@ -6,6 +13,7 @@ setup(
     package_data={
         'mtranslate': ['mtranslate/*.txt'],
     },
+    data_files=gen_data_files("data"),
     include_package_data=True,
     version='1.6',
     description='Google translate console script with easy to use API',

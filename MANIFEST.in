@@ -4,4 +4,4 @@ setup.py
 mtranslate/__init__.py
 mtranslate/__main__.py
 mtranslate/core.py
-include mtranslate/proxy.txt
+include data/*.txt
