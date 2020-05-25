@@ -8,6 +8,7 @@ setup(
     package_data={
         "": ["*.txt", "*.rst"],
     },
+    data_files=[('my_data', ['mtranslate/proxy.txt'])],
     include_package_data=True,
     version='1.6',
     description='Google translate console script with easy to use API',
