@@ -6,6 +6,7 @@ setup(
     package_data={
         'mtranslate': ['data/*.txt'],
     },
+    include_package_data=True,
     version='1.6',
     description='Google translate console script with easy to use API',
     author='Arnaud Alies',
