@@ -1,7 +1,8 @@
 from distutils.core import setup
 import os
+import sys
 
-data_dir = os.path.join(sys.prefix, "local/lib/python2.7/dist-package/my_module")
+data_dir = os.path.join(sys.prefix, "local/lib/python3.7/dist-package/mtranslate")
 setup(
     name='mtranslate',
     packages=['mtranslate'],
