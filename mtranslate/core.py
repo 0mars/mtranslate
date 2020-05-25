@@ -68,18 +68,12 @@ def translate(to_translate, to_language="auto", from_language="auto"):
     print(translate("salut tu vas bien?", "en"))
     hello you alright?
     """
-    ip_addresses = [
-        "190.248.153.162:8080",
-        "177.42.79.74:8080",
-        "47.88.16.118:3128",
-        "80.240.21.230:8080",
-        "5.189.152.125:8118",
-        "212.227.193.229:3128",
-        "167.233.7.67:3128",
-        "159.69.62.137:8080",
-        "217.114.218.247:80",
-        "138.201.5.34:8080"
-    ]
+
+    with open('../.data/proxy.txt') as f:
+        content = f.readlines()
+    # you may also want to remove whitespace characters like `\n` at the end of each line
+    ip_addresses = [x.strip() for x in content]
+
     base_link = "http://translate.google.com/m?hl=%s&sl=%s&q=%s"
     proxy_index = random.randint(0, len(ip_addresses) - 1)
     proxy = {"http": ip_addresses[proxy_index]}
