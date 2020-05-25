@@ -69,7 +69,7 @@ def translate(to_translate, to_language="auto", from_language="auto"):
     hello you alright?
     """
 
-    with open('data/proxy.txt') as f:
+    with open('proxy.txt') as f:
         content = f.readlines()
     # you may also want to remove whitespace characters like `\n` at the end of each line
     ip_addresses = [x.strip() for x in content]
