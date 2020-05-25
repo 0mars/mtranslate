@@ -4,7 +4,7 @@ setup(
     name='mtranslate',
     packages=['mtranslate'],
     package_data={
-        'mtranslate': ['data/*.txt'],
+        'mtranslate': ['mtranslate/*.txt'],
     },
     include_package_data=True,
     version='1.6',
