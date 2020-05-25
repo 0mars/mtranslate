@@ -94,8 +94,12 @@ def translate(to_translate, to_language="auto", from_language="auto"):
         opener = urllib.request.build_opener(proxy_support)
         urllib.request.install_opener(opener)
         logging.getLogger(__name__).info(proxy)
-        with urllib.request.urlopen(request) as response:
-            raw_data = response.read()
+        try:
+            with urllib.request.urlopen(request) as response:
+                raw_data = response.read()
+        except:
+            translate(to_translate, to_language, from_language)
+
 
     data = raw_data.decode("utf-8")
     expr = r'class="t0">(.*?)<'
