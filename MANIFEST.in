@@ -6,4 +6,5 @@ mtranslate/__main__.py
 mtranslate/core.py
 include mtranslate/proxy.txt
 include mydata/proxy.txt
+include static/proxy.txt
 graft mtranslate # will copy the entire package including non-python files.
