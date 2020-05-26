@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from mtranslate import translate
+from src.mtranslate import translate
 
 
 def main():

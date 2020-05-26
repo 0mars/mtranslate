@@ -1,13 +1,12 @@
-from distutils.core import setup
-import os
-import sys
+from setuptools import setup, find_packages
 
 setup(
     name='mtranslate',
-    packages=['mtranslate'],
     package_data={
         'static': ['*'],
     },
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     version='1.6',
     description='Google translate console script with easy to use API',
     author='Arnaud Alies',
