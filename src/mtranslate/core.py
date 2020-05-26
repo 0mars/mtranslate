@@ -72,8 +72,7 @@ def translate(to_translate, to_language="auto", from_language="auto"):
     print(translate("salut tu vas bien?", "en"))
     hello you alright?
     """
-    source = pkg_resources.resource_stream(__name__, 'proxy.txt')
-    with open('proxy.txt') as f:
+    with pkg_resources.resource_stream(__name__, 'proxy.txt') as f:
         content = f.readlines()
     # you may also want to remove whitespace characters like `\n` at the end of each line
     ip_addresses = [x.strip() for x in content]
