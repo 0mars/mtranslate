@@ -62,7 +62,7 @@ def unescape(text):
     return (parser.unescape(text))
 
 
-def translate(to_translate, to_language="auto", from_language="auto"):
+def translate(to_translate, to_language="auto", from_language="auto", use_proxy=False):
     """Returns the translation using google translate
     you must shortcut the language you define
     (French = fr, English = en, Spanish = es, etc...)
@@ -93,15 +93,19 @@ def translate(to_translate, to_language="auto", from_language="auto"):
         link = base_link % (to_language, from_language, to_translate)
         request = urllib.request.Request(link, headers=agent)
 
-        proxy_support = urllib.request.ProxyHandler(proxy)
-        opener = urllib.request.build_opener(proxy_support)
-        urllib.request.install_opener(opener)
-        logging.getLogger(__name__).info(proxy)
-        try:
+        if use_proxy:
+            proxy_support = urllib.request.ProxyHandler(proxy)
+            opener = urllib.request.build_opener(proxy_support)
+            urllib.request.install_opener(opener)
+            logging.getLogger(__name__).info(proxy)
+            try:
+                with urllib.request.urlopen(request) as response:
+                    raw_data = response.read()
+            except:
+                translate(to_translate, to_language, from_language)
+        else:
             with urllib.request.urlopen(request) as response:
                 raw_data = response.read()
-        except:
-            translate(to_translate, to_language, from_language)
 
 
     data = raw_data.decode("utf-8")
